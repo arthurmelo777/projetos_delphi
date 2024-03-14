@@ -24,6 +24,7 @@ var
   Form2: TForm2;
 
 implementation
+
 uses
 Unit1;
 
@@ -33,21 +34,14 @@ Form1: TForm1;
 
 procedure TForm2.Button1Click(Sender: TObject);
 begin
-  Form2.Close;
-  Form1:= TForm1.Create(Form2);
-  Form1.Edit1.Text:= 'Form2.Label2.Caption';
-  Form1.Show;
-  ShowMessage('Usuario confirmou!');
-  Form2.Close;
+  ShowMessage('Usuario confirmou');
+  close;
 end;
 
 procedure TForm2.Button2Click(Sender: TObject);
 begin
-  Form2.Close;
-  Form1:= TForm1.Create(Form2);
-  Form1.Show;
-  ShowMessage('Usuario cancelou!');
-  Form2.Close;
+  ShowMessage('Usuario cancelou');
+  close;
 end;
 
 end.

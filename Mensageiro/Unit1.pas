@@ -4,7 +4,7 @@ interface
 
 uses
   Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes, Vcl.Graphics,
-  Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Unit2, Vcl.StdCtrls;
+  Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Vcl.StdCtrls;
 
 type
   TForm1 = class(TForm)
@@ -12,10 +12,8 @@ type
     Edit1: TEdit;
     Button1: TButton;
     procedure Button1Click(Sender: TObject);
-    function ObterForm (): TObject;
   private
     { Private declarations }
-    Form2: TForm2;
   public
     { Public declarations }
   end;
@@ -25,20 +23,23 @@ var
 
 implementation
 
-{$R *.dfm}
+uses
+  Unit2;
 
-function TForm1.ObterForm: TObject;
-begin
-  Result:= Form1;
-end;
+var
+  Form2: TForm2;
+
+{$R *.dfm}
 
 procedure TForm1.Button1Click(Sender: TObject);
 begin
-  if (Form2 = nil) then
-    Form2:= TForm2.Create(Self);
-    Form2.Show;
-    Form1.Hide;
-    Form2.Label2.Caption := Form1.Edit1.Text;
+  if Not Assigned(Form2) then
+    Application.CreateForm(TForm2, Form2);
+
+  Form2.Label2.Caption := Form1.Edit1.Text;
+
+  Form2.Show;
+
 end;
 
 end.
