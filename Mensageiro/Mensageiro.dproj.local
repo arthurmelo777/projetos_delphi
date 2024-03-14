@@ -1,0 +1,12 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<BorlandProject>
+  <Transactions>
+    <Transaction>2024/03/14 12:52:07.346,=C:\Users\20221014040003\Documents\Embarcadero\Studio\Projects\Unit1.pas</Transaction>
+    <Transaction>2024/03/14 12:53:17.591,=C:\Users\20221014040003\Documents\Embarcadero\Studio\Projects\Unit2.pas</Transaction>
+    <Transaction>2024/03/14 14:23:37.684,C:\Users\20221014040003\Desktop\Projetos\Mensageiro\Unit1.pas=C:\Users\20221014040003\Documents\Embarcadero\Studio\Projects\Unit1.pas</Transaction>
+    <Transaction>2024/03/14 14:23:37.684,C:\Users\20221014040003\Desktop\Projetos\Mensageiro\Unit1.dfm=C:\Users\20221014040003\Documents\Embarcadero\Studio\Projects\Unit1.dfm</Transaction>
+    <Transaction>2024/03/14 14:23:41.902,C:\Users\20221014040003\Desktop\Projetos\Mensageiro\Unit2.dfm=C:\Users\20221014040003\Documents\Embarcadero\Studio\Projects\Unit2.dfm</Transaction>
+    <Transaction>2024/03/14 14:23:41.902,C:\Users\20221014040003\Desktop\Projetos\Mensageiro\Unit2.pas=C:\Users\20221014040003\Documents\Embarcadero\Studio\Projects\Unit2.pas</Transaction>
+    <Transaction>2024/03/14 14:24:10.903,C:\Users\20221014040003\Desktop\Projetos\Mensageiro\Mensageiro.dproj=C:\Users\20221014040003\Documents\Embarcadero\Studio\Projects\Project1.dproj</Transaction>
+  </Transactions>
+</BorlandProject>
