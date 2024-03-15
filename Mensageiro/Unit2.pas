@@ -34,14 +34,14 @@ Form1: TForm1;
 
 procedure TForm2.Button1Click(Sender: TObject);
 begin
-  ShowMessage('Usuario confirmou');
   close;
+  ShowMessage('Usuario confirmou');
 end;
 
 procedure TForm2.Button2Click(Sender: TObject);
 begin
-  ShowMessage('Usuario cancelou');
   close;
+  ShowMessage('Usuario cancelou');
 end;
 
 end.
