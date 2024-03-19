@@ -1,0 +1,85 @@
+unit Unit1;
+
+interface
+
+uses
+  Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes, Vcl.Graphics,
+  Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Data.DB, FireDAC.Stan.Intf,
+  FireDAC.Stan.Option, FireDAC.Stan.Error, FireDAC.UI.Intf, FireDAC.Phys.Intf,
+  FireDAC.Stan.Def, FireDAC.Stan.Pool, FireDAC.Stan.Async, FireDAC.Phys,
+  FireDAC.Phys.SQLite, FireDAC.Phys.SQLiteDef, FireDAC.Stan.ExprFuncs,
+  FireDAC.Phys.SQLiteWrapper.Stat, FireDAC.VCLUI.Wait, FireDAC.Stan.Param,
+  FireDAC.DatS, FireDAC.DApt.Intf, FireDAC.DApt, FireDAC.Comp.DataSet,
+  FireDAC.Comp.Client, Vcl.Grids, Vcl.DBGrids, Vcl.StdCtrls, Vcl.ExtCtrls,
+  Vcl.DBCtrls, DateUtils;
+
+type
+  TForm1 = class(TForm)
+    DBNavigator1: TDBNavigator;
+    CheckBox1: TCheckBox;
+    DataSource1: TDataSource;
+    DBGrid1: TDBGrid;
+    FDConnection1: TFDConnection;
+    FDQuery1: TFDQuery;
+    procedure CheckBox1Click(Sender: TObject);
+    procedure DBNavigator1BeforeAction(Sender: TObject; Button: TNavigateBtn);
+    function Validate: Boolean;
+  private
+    { Private declarations }
+  public
+    { Public declarations }
+  end;
+
+var
+  Form1: TForm1;
+
+implementation
+
+{$R *.dfm}
+
+procedure TForm1.CheckBox1Click(Sender: TObject);
+begin
+  if CheckBox1.Checked = True then
+    DBNavigator1.DataSource := DataSource1
+  else
+    DBNavigator1.DataSource := nil;
+end;
+
+procedure TForm1.DBNavigator1BeforeAction(Sender: TObject; Button: TNavigateBtn);
+begin
+  if Button = nbInsert then // Verifica se o botão clicado é para inserir um novo registro
+  begin
+    // Aqui você pode fazer suas validações antes de inserir o novo registro
+    if Validate then // Suponha que ValidaCampos seja uma função que realiza as validações necessárias
+    begin
+      // Se os campos estiverem válidos, permita a ação do Navigator
+      DBGrid1.ReadOnly := True; // Impede a edição dos campos no DBGrid
+      // Outras operações necessárias antes de permitir a inserção do novo registro
+    end
+    else
+    begin
+      // Se os campos não estiverem válidos, impeça a ação do Navigator
+      Abort;
+      ShowMessage('Por favor, verifique os valores dos campos antes de adicionar um novo registro.');
+    end;
+  end;
+end;
+
+function TForm1.Validate: Boolean;
+var
+  AnoNascimento: Integer;
+begin
+  Result := False; // Inicializa com False por padrão
+  // Acessa o DataSet associado ao DataSource do DBGrid
+  if DBGrid1.DataSource.DataSet.State = dsInsert then
+  begin
+    // Aqui você pode realizar suas validações nos campos do novo registro
+    // Por exemplo, verificar se o ano da data de nascimento é menor ou igual ao ano atual
+    Result := (YearOf(Now) >= YearOf(DBGrid1.DataSource.DataSet.FieldByName('DataNascimento').AsDateTime));
+    // Este é um exemplo simples de validação apenas para o ano da data de nascimento
+    // Você deve adaptar esta função de acordo com suas necessidades de validação
+  end;
+end;
+
+
+end.
