@@ -1,0 +1,58 @@
+unit Unit1;
+
+interface
+
+uses
+  Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes, Vcl.Graphics,
+  Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Data.DB, FireDAC.Stan.Intf,
+  FireDAC.Stan.Option, FireDAC.Stan.Error, FireDAC.UI.Intf, FireDAC.Phys.Intf,
+  FireDAC.Stan.Def, FireDAC.Stan.Pool, FireDAC.Stan.Async, FireDAC.Phys,
+  FireDAC.Phys.SQLite, FireDAC.Phys.SQLiteDef, FireDAC.Stan.ExprFuncs,
+  FireDAC.Phys.SQLiteWrapper.Stat, FireDAC.VCLUI.Wait, FireDAC.Stan.Param,
+  FireDAC.DatS, FireDAC.DApt.Intf, FireDAC.DApt, FireDAC.Comp.DataSet,
+  FireDAC.Comp.Client, Vcl.Grids, Vcl.DBGrids, Vcl.StdCtrls, Vcl.ExtCtrls,
+  Vcl.DBCtrls;
+
+type
+  TForm1 = class(TForm)
+    DBNavigator1: TDBNavigator;
+    CheckBox1: TCheckBox;
+    FDConnection1: TFDConnection;
+    FDQuery1: TFDQuery;
+    DataSource1: TDataSource;
+    Label1: TLabel;
+    FDQuery1DataNascimento: TDateField;
+    FDQuery1CPF: TStringField;
+    FDQuery1Nome: TStringField;
+    DBGrid1: TDBGrid;
+    FDQuery1Código: TStringField;
+    procedure CheckBox1Click(Sender: TObject);
+    procedure DataValidate(Sender: TField);
+  private
+    { Private declarations }
+  public
+    { Public declarations }
+  end;
+
+var
+  Form1: TForm1;
+
+implementation
+
+{$R *.dfm}
+
+procedure TForm1.CheckBox1Click(Sender: TObject);
+begin
+  if CheckBox1.Checked = True then
+    DBNavigator1.DataSource := DataSource1
+  else
+    DBNavigator1.DataSource := nil;
+end;
+
+procedure TForm1.DataValidate(Sender: TField);
+begin
+  if (StrToDate(Sender.AsString) > Date()) then
+    Abort;
+end;
+
+end.
