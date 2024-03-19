@@ -17,12 +17,17 @@ type
   TForm1 = class(TForm)
     DBNavigator1: TDBNavigator;
     CheckBox1: TCheckBox;
-    DBGrid1: TDBGrid;
     FDConnection1: TFDConnection;
     FDQuery1: TFDQuery;
     DataSource1: TDataSource;
+    Label1: TLabel;
+    FDQuery1DataNascimento: TDateField;
+    FDQuery1CPF: TStringField;
+    FDQuery1Nome: TStringField;
+    DBGrid1: TDBGrid;
+    FDQuery1Código: TStringField;
     procedure CheckBox1Click(Sender: TObject);
-    procedure DBNavigator1Click(Sender: TObject; Button: TNavigateBtn);
+    procedure DataValidate(Sender: TField);
   private
     { Private declarations }
   public
@@ -44,20 +49,10 @@ begin
     DBNavigator1.DataSource := nil;
 end;
 
-procedure TForm1.DBNavigator1Click(Sender: TObject; Button: TNavigateBtn);
+procedure TForm1.DataValidate(Sender: TField);
 begin
-  case Button of
-    nbInsert:
-    begin
-
-    end;
-
-    nbEdit:
-    begin
-
-    end;
-
-  end;
+  if (StrToDate(Sender.AsString) > Date()) then
+    Abort;
 end;
 
 end.
